@@ -14,8 +14,8 @@ _OBJ = hellomake.o hellofunc.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 
-$(ODIR)/%.o: %.c $(DEPS)
-		$(CC) -c -o $@ $< $(CFLAGS)
+$(OBJ): $(ODIR)/%.o: src/%.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
 
 hellomake: $(OBJ)
 		$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
@@ -23,4 +23,4 @@ hellomake: $(OBJ)
 .PHONY: clean
 
 clean:
-		rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~
+		rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ 
